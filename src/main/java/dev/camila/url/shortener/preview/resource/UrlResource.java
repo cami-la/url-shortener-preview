@@ -11,18 +11,17 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @RestController
-@RequestMapping("/api/urls")
+@RequestMapping("/urls")
 public record UrlResource(
   UrlService urlService
 ) {
 
   @GetMapping("/{shortUrl}")
-  public ResponseEntity<Url> redirectToOriginalUrl(@PathVariable String shortUrl) throws URISyntaxException {
+  public ResponseEntity<Void> redirectToOriginalUrl(@PathVariable String shortUrl) throws URISyntaxException {
     Url urlByShortUrl = this.urlService.getOriginalUrlByShortUrl(shortUrl);
     String redirectTo = urlByShortUrl.getOriginalUrl();
-    URI uri = new URI(redirectTo);
     HttpHeaders httpHeaders = new HttpHeaders();
-    httpHeaders.setLocation(uri);
+    httpHeaders.setLocation(new URI(redirectTo));
     return new ResponseEntity<>(httpHeaders, HttpStatus.MOVED_PERMANENTLY);
   }
 

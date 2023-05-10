@@ -1,6 +1,7 @@
 package dev.camila.url.shortener.preview.service;
 
 import com.google.common.hash.Hashing;
+import dev.camila.url.shortener.preview.exceptions.BusinessException;
 import dev.camila.url.shortener.preview.model.Url;
 import dev.camila.url.shortener.preview.repository.UrlRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +30,7 @@ public record UrlService(
    */
   public Url getOriginalUrlByShortUrl(String shortUrl) {
     return this.urlRepository.findByShortUrl(shortUrl)
-        .orElseThrow(() -> new RuntimeException(String.format("'%s' not found", shortUrl)));
+        .orElseThrow(() -> new BusinessException(String.format("'%s' not found", shortUrl)));
   }
 
   /**

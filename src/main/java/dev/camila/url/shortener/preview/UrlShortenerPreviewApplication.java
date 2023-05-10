@@ -1,6 +1,5 @@
 package dev.camila.url.shortener.preview;
 
-import dev.camila.url.shortener.preview.service.UrlService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,6 +13,5 @@ public class UrlShortenerPreviewApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		UrlService.generateShortUrl("https://www.youtube.com/watch?v=V--Tb0xkaMg");
 	}
 }
