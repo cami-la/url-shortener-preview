@@ -30,6 +30,12 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+bootJar {
+	manifest {
+		attributes 'Main-Class': 'dev.camila.url.shortener.preview'
+	}
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }
