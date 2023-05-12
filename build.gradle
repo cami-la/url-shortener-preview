@@ -32,7 +32,7 @@ dependencies {
 
 tasks.jar {
 	manifest {
-		attributes["Main-Class"] = "dev.camila.url.shortener.preview"
+		attributes["Main-Class"] = "dev.camila.url.shortener.preview.UrlShortenerPreviewApplicationTests"
 	}
 }
 
