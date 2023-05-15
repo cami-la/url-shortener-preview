@@ -26,7 +26,7 @@ public record UrlResource(
   }
 
   @PostMapping
-  public ResponseEntity<Url> createShortUrlFromOriginalUrl(@RequestParam(value = "originalUrl") String originalUrl) {
+  public ResponseEntity<Url> createShortUrlFromOriginalUrl(@RequestBody String originalUrl) {
     Url url = this.urlService.saveOrUpdateUrl(originalUrl);
     return ResponseEntity.status(HttpStatus.CREATED).body(url);
   }

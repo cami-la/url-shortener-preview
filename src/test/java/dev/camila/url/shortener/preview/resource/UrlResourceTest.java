@@ -1,5 +1,6 @@
 package dev.camila.url.shortener.preview.resource;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.camila.url.shortener.preview.model.Url;
 import dev.camila.url.shortener.preview.repository.UrlRepository;
 import dev.camila.url.shortener.preview.service.UrlService;
@@ -43,15 +44,15 @@ public class UrlResourceTest {
   }
 
   @Test
-  void shouldCreateShortUrlFromOriginalUrlAndReturn201StatusCode() throws Exception {
+  void shouldCreateShortUrlAndReturn201StatusCode() throws Exception {
     //given
     String originalUrl = "https://www.linkedin.com/in/cami-la/";
     //when
     //then
     mockMvc.perform(
             MockMvcRequestBuilders.post(URL)
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .param("originalUrl", originalUrl)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(originalUrl)
         ).andExpect(MockMvcResultMatchers.status().isCreated())
         .andExpect(MockMvcResultMatchers.jsonPath("$.id").isNotEmpty())
         .andExpect(MockMvcResultMatchers.jsonPath("$.originalUrl").value(originalUrl))
@@ -60,7 +61,7 @@ public class UrlResourceTest {
   }
 
   @Test
-  void shouldUpdateOriginUrlFromOriginalUrlAndReturn201StatusCode() throws Exception {
+  void shouldUpdateOriginalUrlAndReturn201StatusCode() throws Exception {
     //given
     urlRepository.saveAndFlush(Url.builder()
         .originalUrl("https://www.linkedin.com/in/cami-la/")
@@ -71,8 +72,8 @@ public class UrlResourceTest {
     //then
     mockMvc.perform(
         MockMvcRequestBuilders.post(URL)
-            .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-            .param("originalUrl", originalUrl)
+            .contentType(MediaType.APPLICATION_JSON_VALUE)
+            .content(originalUrl)
     ).andExpect(MockMvcResultMatchers.status().isCreated())
         .andExpect(MockMvcResultMatchers.jsonPath("$.id").isNotEmpty())
         .andExpect(MockMvcResultMatchers.jsonPath("$.originalUrl").value(originalUrl))
@@ -96,7 +97,7 @@ public class UrlResourceTest {
   }
 
   @Test
-  void shouldRedirectToOriginalUrl2() throws Exception {
+  void shouldReturnNotFoundWhenRedirectingToInvalidShortUrl() throws Exception {
     //given
     String shorlUrl = "abc122";
     //when
