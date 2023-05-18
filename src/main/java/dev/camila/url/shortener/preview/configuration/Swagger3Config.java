@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class Swagger3Config {
-
   @Bean
   public GroupedOpenApi publicApi() {
     return GroupedOpenApi.builder()
@@ -14,5 +13,4 @@ public class Swagger3Config {
         .pathsToMatch("/urls/**")
         .build();
   }
-
 }
