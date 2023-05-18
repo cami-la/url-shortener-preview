@@ -95,7 +95,7 @@ Content-Type: application/json
 
 ## Documentação do Swagger
 
-A documentação da API pode ser encontrada no Swagger. Para visualizá-la, acesse: [Documentação do Swagger](https://seu-url-swagger-aqui).
+A documentação da API pode ser encontrada no Swagger. Para visualizá-la, acesse: [Documentação do Swagger](http://localhost:8080/swagger-ui/index.html#/).
 
 ## Hospedagem no Railway.app
 
