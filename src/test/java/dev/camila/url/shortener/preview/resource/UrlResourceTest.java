@@ -1,6 +1,5 @@
 package dev.camila.url.shortener.preview.resource;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.camila.url.shortener.preview.model.Url;
 import dev.camila.url.shortener.preview.repository.UrlRepository;
 import dev.camila.url.shortener.preview.service.UrlService;
@@ -28,7 +27,7 @@ public class UrlResourceTest {
   private UrlService urlService;
   @Autowired
   private UrlRepository urlRepository;
-  private static String URL = "/urls";
+  private static String URL = "/";
 
   private Url url1;
   private Url url2;
@@ -51,8 +50,8 @@ public class UrlResourceTest {
     //then
     mockMvc.perform(
             MockMvcRequestBuilders.post(URL)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(originalUrl)
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("originalUrl", originalUrl)
         ).andExpect(MockMvcResultMatchers.status().isCreated())
         .andExpect(MockMvcResultMatchers.jsonPath("$.id").isNotEmpty())
         .andExpect(MockMvcResultMatchers.jsonPath("$.originalUrl").value(originalUrl))
@@ -71,10 +70,10 @@ public class UrlResourceTest {
     //when
     //then
     mockMvc.perform(
-        MockMvcRequestBuilders.post(URL)
-            .contentType(MediaType.APPLICATION_JSON_VALUE)
-            .content(originalUrl)
-    ).andExpect(MockMvcResultMatchers.status().isCreated())
+            MockMvcRequestBuilders.post(URL)
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("originalUrl", originalUrl)
+        ).andExpect(MockMvcResultMatchers.status().isCreated())
         .andExpect(MockMvcResultMatchers.jsonPath("$.id").isNotEmpty())
         .andExpect(MockMvcResultMatchers.jsonPath("$.originalUrl").value(originalUrl))
         .andExpect(MockMvcResultMatchers.jsonPath("$.shortUrl").value("abc123"))
@@ -91,7 +90,7 @@ public class UrlResourceTest {
     String shorlUrl = "abc123";
     //when
     //then
-    mockMvc.perform(MockMvcRequestBuilders.get(URL + "/{shortUrl}", shorlUrl))
+    mockMvc.perform(MockMvcRequestBuilders.get(URL + "{shortUrl}", shorlUrl))
         .andExpect(MockMvcResultMatchers.status().isMovedPermanently())
         .andDo(MockMvcResultHandlers.print());
   }
@@ -102,7 +101,7 @@ public class UrlResourceTest {
     String shorlUrl = "abc122";
     //when
     //then
-    mockMvc.perform(MockMvcRequestBuilders.get(URL + "/{shortUrl}", shorlUrl))
+    mockMvc.perform(MockMvcRequestBuilders.get(URL + "{shortUrl}", shorlUrl))
         .andExpect(MockMvcResultMatchers.status().isNotFound())
         .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Bad Request! Consult the documentation"))
         .andExpect(MockMvcResultMatchers.jsonPath("$.timestamp").exists())

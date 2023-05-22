@@ -33,34 +33,40 @@
 
 > Request da requisição
 
+### Criar uma URL curta
+
+POST /
+
+- Descrição: Cria uma URL curta a partir de uma URL original.
+- Parâmetros da solicitação:
+  - `originalUrl` (obrigatório): A URL original a ser encurtada.
+- Exemplo de solicitação:
+
+POST /?originalUrl=https://www.example.com
+
 ### Redirecionar para a URL original
 
-GET /urls/{shortUrl}
+GET /{shortUrl}
 
 - Descrição: Redireciona para a URL original com base no código de URL encurtada.
 - Exemplo de solicitação:
 
-GET /urls/abc123
-
-### Criar uma URL curta
-
-POST /urls
-
-- Descrição: Cria uma URL curta a partir de uma URL original.
-- Corpo da solicitação: JSON contendo a URL original.
-- Exemplo de solicitação:
-
-POST /urls
-Content-Type: application/json
-
-{
-"originalUrl": "https://www.example.com"
-}
-
+GET /abc123
 
 > Response da requisição
 
 ### Exemplos de Respostas
+
+- Resposta bem-sucedida para criação de URL curta (POST):
+
+HTTP/1.1 201 Created
+Content-Type: application/json
+
+{
+"id": "12345",
+"originalUrl": "https://www.example.com",
+"shortUrl": "abc123"
+}
 
 - Resposta bem-sucedida para redirecionamento (GET):
 
@@ -82,17 +88,6 @@ Content-Type: application/json
   }
 }
 
-- Resposta bem-sucedida para criação de URL curta (POST):
-
-HTTP/1.1 201 Created
-Content-Type: application/json
-
-{
-"id": "12345",
-"originalUrl": "https://www.example.com",
-"shortUrl": "abc123"
-}
-
 ## Documentação do Swagger
 
 A documentação da API pode ser encontrada no Swagger. Para visualizá-la, acesse: [Documentação do Swagger](http://localhost:8080/swagger-ui/index.html#/).
@@ -108,7 +103,6 @@ Contribuições são bem-vindas! Se você encontrar algum problema ou tiver suge
 ## Licença
 
 Este projeto está licenciado sob a licença MIT. Consulte o arquivo [Licença MIT](LICENSE) para obter.
-
 
 <hr>
 

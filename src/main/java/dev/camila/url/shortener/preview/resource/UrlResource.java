@@ -11,7 +11,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @RestController
-@RequestMapping("/urls")
+@RequestMapping("/")
 public record UrlResource(
   UrlService urlService
 ) {
@@ -26,7 +26,7 @@ public record UrlResource(
   }
 
   @PostMapping
-  public ResponseEntity<Url> createShortUrlFromOriginalUrl(@RequestBody String originalUrl) {
+  public ResponseEntity<Url> createShortUrlFromOriginalUrl(@RequestParam(value = "originalUrl") String originalUrl) {
     Url url = this.urlService.saveOrUpdateUrl(originalUrl);
     return ResponseEntity.status(HttpStatus.CREATED).body(url);
   }

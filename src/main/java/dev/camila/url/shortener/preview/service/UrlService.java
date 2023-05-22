@@ -4,7 +4,6 @@ import com.google.common.hash.Hashing;
 import dev.camila.url.shortener.preview.exceptions.BusinessException;
 import dev.camila.url.shortener.preview.model.Url;
 import dev.camila.url.shortener.preview.repository.UrlRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
@@ -12,7 +11,6 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-@Slf4j
 public record UrlService(
     UrlRepository urlRepository
 ) {
@@ -25,6 +23,7 @@ public record UrlService(
 
   /**
    * Método responsável por encontrar a URL correspondente da URL encurtada
+   *
    * @param shortUrl "URL encurtada que será pesquisada no banco de dados"
    * @return uma String contendo a URL original
    */
@@ -35,6 +34,7 @@ public record UrlService(
 
   /**
    * Método responsável por montar o objeto da URL que será salva e retornar a mesma.
+   *
    * @param originalUrl "Url que será salva ou atualizada"
    * @return O objeto URL salvo no banco de dados
    */
@@ -49,6 +49,7 @@ public record UrlService(
 
   /**
    * Método responsável por gerar o hash da URL encurtada
+   *
    * @param originalUrl "Url a qual será encurtada"
    * @return Um hash referente a originalUrl que foi convertida usando sha256
    * @see "https://github.com/google/guava/wiki/HashingExplained"
