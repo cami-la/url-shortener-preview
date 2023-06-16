@@ -10,7 +10,7 @@ public class Swagger3Config {
   public GroupedOpenApi publicApi() {
     return GroupedOpenApi.builder()
         .group("springshortenerurl-public")
-        .pathsToMatch("/urls/**")
+        .pathsToMatch("/**")
         .build();
   }
 }

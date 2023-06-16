@@ -21,13 +21,12 @@
     </a>
 </p>
 
-<h3 align="center">▶️ <a href="">Playlist no YouTube</a></h3>
-
 ## Configuração
 
-1. Clone o repositório: git clone https://github.com/seu-usuario/url-shortener.git
-2. Inicie a aplicação:
-./gradlew bootrun
+Essas instruções fornecerão aos usuários as etapas necessárias para clonar o repositório e iniciar a aplicação em diferentes ambientes (Unix e Windows) com o perfil de desenvolvimento ativado.
+1. Clone o repositório: git clone https://github.com/cami-la/url-shortener.git
+2. Inicie a aplicação no ambiente Unix: `./gradlew bootrun --args='--spring.profiles.active=dev'`
+3. Inicie a aplicação no ambiente Windows: `gradle.bat bootrun --args='--spring.profiles.active=dev'`
 
 ## Uso da API
 
@@ -95,6 +94,17 @@ A documentação da API pode ser encontrada no Swagger. Para visualizá-la, aces
 ## Hospedagem no Railway.app
 
 Este projeto está hospedado no Railway.app. Para acessar a aplicação, acesse: [URL da Aplicação](https://sua-url-de-hospedagem-aqui).
+<h6>Nota: Este projeto não está mais hospedado no [https://railway.app/](Railway.app) devido a questões financeiras. No entanto, a aplicação e o banco de dados estão prontos para serem hospedados no Railway.app. Se você estiver interessado em vê-los hospedados, por favor, me avise e farei a implantação rapidamente para você. (:</h6>
+
+## Possíveis Melhorias
+
+- **Criar Migrations com Flyway:** É possível implementar o uso de migrations com Flyway para gerenciar as alterações no banco de dados de forma controlada e versionada.
+
+- **Trocar o Banco de Dados PostgreSQL pelo MongoDB:** Caso seja desejado utilizar o MongoDB em vez do PostgreSQL, é possível fazer a substituição do banco de dados e ajustar a configuração do aplicativo para se conectar ao MongoDB em vez do PostgreSQL.
+
+- **Criar um Dockerfile e docker-compose:** Para facilitar o processo de implantação e execução do aplicativo, é recomendado criar um Dockerfile e um arquivo docker-compose.yml. Isso permitirá a criação de uma imagem Docker do aplicativo e a definição dos serviços necessários em um ambiente de contêiner.
+
+- **Criar um CI/CD no GitHub Actions ou no próprio Railway.app:** É possível implementar um fluxo de Integração Contínua e Entrega Contínua (CI/CD) para automatizar o processo de construção, testes e implantação do aplicativo. Você pode optar por utilizar o GitHub Actions ou, se preferir, aproveitar recursos oferecidos pelo Railway.app, caso eles estejam disponíveis.
 
 ## Contribuição
 
@@ -102,7 +112,7 @@ Contribuições são bem-vindas! Se você encontrar algum problema ou tiver suge
 
 ## Licença
 
-Este projeto está licenciado sob a licença MIT. Consulte o arquivo [Licença MIT](LICENSE) para obter.
+Este projeto está licenciado sob a licença MIT. Consulte o arquivo <a href="https://github.com/cami-la/url-shortener-preview/blob/3eb25645b0ca1a1ee8bd8b5de947c11f5a6d42ba/LICENSE.md">(LICENSE)</a> para obter.
 
 <hr>
 
