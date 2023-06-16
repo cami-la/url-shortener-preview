@@ -1,7 +1,7 @@
 spring:
   datasource:
     driverClassName: org.h2.Driver
-    url: jdbc:h2:mem:url_shortener_preview
+    url: jdbc:h2:mem:url_shortener
     username: cami
     password:
   jpa:
@@ -21,3 +21,7 @@ spring:
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
+    
+# https://docs.spring.io/spring-boot/docs/2.0.x/reference/html/common-application-properties.html
+
+# spring.profiles.active=dev

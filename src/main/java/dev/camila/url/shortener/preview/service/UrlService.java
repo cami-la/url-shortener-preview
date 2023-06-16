@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public record UrlService(
@@ -18,7 +19,7 @@ public record UrlService(
       'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
       'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F',
       'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
-      'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+      'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '/', '+'
   );
 
   /**
@@ -33,18 +34,24 @@ public record UrlService(
   }
 
   /**
-   * Método responsável por montar o objeto da URL que será salva e retornar a mesma.
+   * Método responsável por encontrar o objeto ou salvá-lo e retornar o mesmo.
    *
-   * @param originalUrl "Url que será salva ou atualizada"
+   * @param originalUrl "Url que será encontrada ou atualizada"
    * @return O objeto URL salvo no banco de dados
    */
-  public Url saveOrUpdateUrl(String originalUrl) {
-    Url url = this.urlRepository.findByOriginalUrl(originalUrl)
-        .orElseGet(() -> Url.builder()
-            .originalUrl(originalUrl)
-            .shortUrl(generateShortUrl(originalUrl))
-            .build());
-    return this.urlRepository.save(url);
+  public Url findOrSaveUrl(String originalUrl) {
+    Url url;
+    Optional<Url> optionalUrl = this.urlRepository().findByOriginalUrl(originalUrl);
+    if (optionalUrl.isPresent()) {
+      url = optionalUrl.get();
+    } else {
+      Url urlToSave = Url.builder()
+          .originalUrl(originalUrl)
+          .shortUrl(generateShortUrl(originalUrl))
+          .build();
+      url = this.urlRepository.save(urlToSave);
+    }
+    return url;
   }
 
   /**
