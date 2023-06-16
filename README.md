@@ -1,5 +1,5 @@
 <h1>url-shortener</h1>
-<p align="center">Esta é uma API para encurtar URLs e redirecionar para a URL original.</p>
+<p>O URL Shortener é um projeto que oferece um serviço de encurtamento de URLs. Destaca-se pela funcionalidade de redirect eficiente, persistência de dados confiável, testes abrangentes (unidade e integração), hospedagem em nuvem pública e documentação.</p>
 <p align="center">
      <a alt="Java">
         <img src="https://img.shields.io/badge/Java-v17-blue.svg" />
@@ -10,8 +10,8 @@
     <a alt="Gradle">
         <img src="https://img.shields.io/badge/Gradle-v7.6-lightgreen.svg" />
     </a>
-    <a alt="H2">
-        <img src="https://img.shields.io/badge/guava-v30.1.1-darkred.svg" />
+    <a alt="google Guava">
+        <img src="https://img.shields.io/badge/guava-v30.1.1-red.svg" />
     </a>
     <a alt="H2">
         <img src="https://img.shields.io/badge/H2-v2.1.214-darkblue.svg" />
@@ -19,11 +19,19 @@
     <a alt="PostgreSQL">
         <img src="https://img.shields.io/badge/PostgreSQL-v42.5.6-blue.svg" />
     </a>
+    <a alt="JUnit5">
+        <img src="https://img.shields.io/badge/JUnit5-v5.9.2-darkred.svg" />
+    </a>
+    <a alt="Mockito">
+        <img src="https://img.shields.io/badge/Mockito-v4.8.1-darkgreen.svg" />
+    </a>
 </p>
 
 ## Configuração
 
-Essas instruções fornecerão aos usuários as etapas necessárias para clonar o repositório e iniciar a aplicação em diferentes ambientes (Unix e Windows) com o perfil de desenvolvimento ativado.
+Essas instruções fornecerão aos usuários as etapas necessárias para clonar o repositório e iniciar a aplicação em
+diferentes ambientes (Unix e Windows) com o perfil de desenvolvimento ativado.
+
 1. Clone o repositório: git clone https://github.com/cami-la/url-shortener.git
 2. Inicie a aplicação no ambiente Unix: `./gradlew bootrun --args='--spring.profiles.active=dev'`
 3. Inicie a aplicação no ambiente Windows: `gradle.bat bootrun --args='--spring.profiles.active=dev'`
@@ -38,7 +46,7 @@ POST /
 
 - Descrição: Cria uma URL curta a partir de uma URL original.
 - Parâmetros da solicitação:
-  - `originalUrl` (obrigatório): A URL original a ser encurtada.
+    - `originalUrl` (obrigatório): A URL original a ser encurtada.
 - Exemplo de solicitação:
 
 POST /?originalUrl=https://www.example.com
@@ -78,41 +86,47 @@ HTTP/1.1 404 Not Found
 Content-Type: application/json
 
 {
-  "message": "URL Not Found",
-  "timestamp": "2023-05-18T10:30:00",
-  "status": 404,
-  "error": "class dev.camila.url.shortener.exception.BusinessException",
-  "details": {
-    "Cause": "'abc123' not found"
-  }
+"message": "URL Not Found",
+"timestamp": "2023-05-18T10:30:00",
+"status": 404,
+"error": "class dev.camila.url.shortener.exception.BusinessException",
+"details": {
+"Cause": "'abc123' not found"
+}
 }
 
 ## Documentação do Swagger
 
-A documentação da API pode ser encontrada no Swagger. Para visualizá-la, acesse: [Documentação do Swagger](http://localhost:8080/swagger-ui/index.html#/).
+A documentação da API pode ser encontrada no Swagger. Para visualizá-la,
+acesse: [Documentação do Swagger](http://localhost:8080/swagger-ui/index.html#/).
 
 ## Hospedagem no Railway.app
 
-Este projeto está hospedado no Railway.app. Para acessar a aplicação, acesse: [URL da Aplicação](https://sua-url-de-hospedagem-aqui).
-<h6>Nota: Este projeto não está mais hospedado no [https://railway.app/](Railway.app) devido a questões financeiras. No entanto, a aplicação e o banco de dados estão prontos para serem hospedados no Railway.app. Se você estiver interessado em vê-los hospedados, por favor, me avise e farei a implantação rapidamente para você. (:</h6>
+Este projeto está hospedado no Railway.app. Para acessar a aplicação,
+acesse: [URL da Aplicação](https://sua-url-de-hospedagem-aqui).
+<h6>Nota: Este projeto não está mais hospedado no [Railway.app]([https://railway.app/) devido a questões financeiras. No
+entanto, a aplicação e o banco de dados estão prontos para serem hospedados no Railway.app. Se você estiver interessado
+em vê-los hospedados, por favor, me avise e farei a implantação rapidamente para você. (:</h6>
 
 ## Possíveis Melhorias
 
-- **Criar Migrations com Flyway:** É possível implementar o uso de migrations com Flyway para gerenciar as alterações no banco de dados de forma controlada e versionada.
-
-- **Trocar o Banco de Dados PostgreSQL pelo MongoDB:** Caso seja desejado utilizar o MongoDB em vez do PostgreSQL, é possível fazer a substituição do banco de dados e ajustar a configuração do aplicativo para se conectar ao MongoDB em vez do PostgreSQL.
-
-- **Criar um Dockerfile e docker-compose:** Para facilitar o processo de implantação e execução do aplicativo, é recomendado criar um Dockerfile e um arquivo docker-compose.yml. Isso permitirá a criação de uma imagem Docker do aplicativo e a definição dos serviços necessários em um ambiente de contêiner.
-
-- **Criar um CI/CD no GitHub Actions ou no próprio Railway.app:** É possível implementar um fluxo de Integração Contínua e Entrega Contínua (CI/CD) para automatizar o processo de construção, testes e implantação do aplicativo. Você pode optar por utilizar o GitHub Actions ou, se preferir, aproveitar recursos oferecidos pelo Railway.app, caso eles estejam disponíveis.
+- Utilizar Migrations com Flyway para gerenciar as alterações no banco de dados de forma controlada e versionada.
+- Trocar o Banco de Dados PostgreSQL pelo MongoDB, aproveitando as características e benefícios oferecidos pelo MongoDB.
+- Criar um Dockerfile e docker-compose para facilitar o processo de implantação e execução do aplicativo em um ambiente
+  de contêiner.
+- Configurar CI/CD no GitHub Actions ou no próprio Railway.app para automatizar o processo de construção, testes e
+  implantação do aplicativo.
 
 ## Contribuição
 
-Contribuições são bem-vindas! Se você encontrar algum problema ou tiver sugestões de melhoria, fique à vontade para abrir uma issue ou enviar um pull request.
+Contribuições são bem-vindas! Se você encontrar algum problema ou tiver sugestões de melhoria, fique à vontade para
+abrir uma issue ou enviar um pull request.
 
 ## Licença
 
-Este projeto está licenciado sob a licença MIT. Consulte o arquivo <a href="https://github.com/cami-la/url-shortener-preview/blob/3eb25645b0ca1a1ee8bd8b5de947c11f5a6d42ba/LICENSE.md">(LICENSE)</a> para obter.
+Este projeto está licenciado sob a licença MIT. Consulte o
+arquivo <a href="https://github.com/cami-la/url-shortener-preview/blob/3eb25645b0ca1a1ee8bd8b5de947c11f5a6d42ba/LICENSE.md">(
+LICENSE)</a> para obter.
 
 <hr>
 
