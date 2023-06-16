@@ -104,7 +104,7 @@ acesse: [Documentação do Swagger](http://localhost:8080/swagger-ui/index.html#
 
 Este projeto está hospedado no Railway.app. Para acessar a aplicação,
 acesse: [URL da Aplicação](https://sua-url-de-hospedagem-aqui).
-<h6>Nota: Este projeto não está mais hospedado no [Railway.app](https://railway.app/) devido a questões financeiras. No
+<h6>Nota: Este projeto não está mais hospedado no https://railway.app/ devido a questões financeiras. No
 entanto, a aplicação e o banco de dados estão prontos para serem hospedados no Railway.app. Se você estiver interessado
 em vê-los hospedados, por favor, me avise e farei a implantação rapidamente para você. (:</h6>
 
@@ -125,8 +125,7 @@ abrir uma issue ou enviar um pull request.
 ## Licença
 
 Este projeto está licenciado sob a licença MIT. Consulte o
-arquivo <a href="https://github.com/cami-la/url-shortener-preview/blob/3eb25645b0ca1a1ee8bd8b5de947c11f5a6d42ba/LICENSE.md">(
-LICENSE)</a> para obter.
+arquivo <a href="https://github.com/cami-la/url-shortener-preview/blob/3eb25645b0ca1a1ee8bd8b5de947c11f5a6d42ba/LICENSE.md">(LICENSE)</a> para obter.
 
 <hr>
 
