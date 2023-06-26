@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://${RAILWAY_DB_HOST}:${RAILWAY_DB_PORT}/${RAILWAY_DB_NAME}
-    username: ${RAILWAY_DB_USERNAME}
-    password: ${RAILWAY_DB_PASSWORD}
+    url: jdbc:postgresql://${RAILWAY_DB_HOST:containers-us-west-169.railway.app}:${RAILWAY_DB_PORT:6620}/${RAILWAY_DB_NAME:railway}
+    username: ${RAILWAY_DB_USERNAME:postgres}
+    password: ${RAILWAY_DB_PASSWORD:g58P3ewfjx2rHuhblNp4}
   jpa:
     show-sql: true
     hibernate:
@@ -10,6 +10,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
